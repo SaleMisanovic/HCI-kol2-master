@@ -1,0 +1,35 @@
+<div >
+  <h1 align = "center">Porudzbine svih musterija</h1>
+  <br>
+  <div class="container">
+
+          <div class="col-md-8 col-md-offset-2">
+            <table class= table table-hover>
+              <thead>
+                <tr>
+                  <th>Narucilac</th>
+                  <th>Artikal</th>
+                  <th>Kolicina</th>
+                  <th>Stanje</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat= "el in vm.korpa">
+                  <td>{{vm.username}}</td>
+                  <td >{{el.proizvod.naziv}}</td>
+                  <td >{{el.kolicina}}</td>
+                  <td><div class="form-group">                    
+                    <select class="form-control" id="sel1">
+                      <option>U obradi</option>
+                      <option>Poslano</option>
+                      <option>Primljeno</option>
+                    </select>
+                  </div>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+</div>

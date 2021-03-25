@@ -1,0 +1,39 @@
+2. kolokvijum iz predmeta Interakcija covek racunar
+
+Zadatak 1.(15 bodova)
+----------------------------
+   a) (5 bodova) modifikovati primer webshop aplikacije tako da koristi kol2-HCI.json katalog proizvoda
+       primer jednog elementa
+        {
+            "ocena": 1,
+            "proizvodjac": "Church & Dwight Company, Inc.",
+            "id": 1,
+            "naziv": "Syrup - Monin, Swiss Choclate",
+            "opis": "fringilla rhoncusr risus dapibus augue vel",
+            "akcija": true,
+            "cena": 257.55,
+            "popust": 10,
+            "kolicina": 47,
+            "img": "http://dummyimage.com/179x192.jpg/ff4444/ffffff",
+            "kategorija": "Hemija"
+        }
+   b) (5 bodova) omoguciti promenu ocene (1, 2, 3, 4, 5)
+   c) (5 bodova) napraviti filter po oceni (ocena <3, ocena==3, ocena>3)
+
+Zadatak 2. (10 bodova)
+----------------------------
+    d) (5 bodova) u detaljnom prikazu proizvoda prikaz organizovati na sledeci nacin:
+               - naziv
+               - slika
+               - cena, popust, cena sa popustom (ako je popust 10% onda se cena sa popustom racuna kao 0.9* cena)
+                  !!! POPUST VAZI SAMO ZA PROIZVODE KOJIH NA KOLICINI IMA VISE OD 20 ILI SU NA AKCIJI ILI je ocena<3
+               - kolicina [komada] [Naruci]
+    e) (5 bodova) implementirati logiku po kojoj se racuna dodatni popust 5% ako se naruci 
+               bar 2 proizvoda koja su ocenjena<3
+
+
+Zadatak 3. (5 bodova)
+----------------------------
+    f) (2 boda) Proveriti da li je korisnik ulogovan i ako jeste omoguciti promenu cene a ako ne ponuditi mu modal za registraciju ili logovanje
+    e) (3 boda) Prikazati korpu sa narucenim proizvodima zajedno sa ukupnom cenom, obracunatim popustima 
+          I BROJEM KUPLJENIH PROIZVODA kod kojih je popust bio vеći od 10%

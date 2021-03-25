@@ -1,0 +1,88 @@
+<div class="container" >
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" ng-click="vm.home()">Home</a></li>
+      <li class="breadcrumb-item" ng-if="vm.kategorija!=null"><a href="#" ng-click="vm.filterKategorije(vm.kategorija)">{{vm.kategorija}}</a></li>
+      <li class="breadcrumb-item" ng-if="vm.proizvod!=null">{{vm.proizvod.naziv}}</li>
+    </ol>
+  </nav>
+
+  <div class="col-md-3">
+      <div class="list-group">
+          <a ng-repeat="el in vm.listaKategorija"
+            href="#" ng-click="vm.filterKategorije(el)" class="list-group-item">{{el}}</a>
+      </div>
+
+
+  <div class="list-group">
+      <a href="#" ng-click="vm.filterOcene(-1)"
+          ng-class="{'aktivan':vm.ocena==-1}"
+          class="list-group-item">Sve ocene</a>
+
+      <a href="#" ng-click="vm.filterOcene(1)"
+          ng-class="{'aktivan':vm.ocena==1}"
+          class="list-group-item">Ocene od 1 do 3</a>
+
+      <a href="#" ng-click="vm.filterOcene(2)"
+          ng-class="{'aktivan':vm.ocena==2}"
+          class="list-group-item">Ocena je 3</a>
+
+      <a href="#" ng-click="vm.filterOcene(3)"
+          ng-class="{'aktivan':vm.ocena==3}"
+          class="list-group-item">Ocene vece od 3</a>
+
+  </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row" ng-if="vm.proizvod==null">
+      <div class="col-sm-4" ng-repeat="el in vm.proizvodi.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage))">
+          <img src="{{el.img}}" style="width:256px; height:160px;"><br>
+
+          <a ng-click="vm.set_favorit(el)" style="cursor:hand;" uib-tooltip="Postavi u omiljene">
+            <i class="glyphicon" ng-class="{'glyphicon-star-empty':el.favorit!=true, 'glyphicon-star':el.favorit==true}"
+             aria-hidden="true"></i></a>
+
+          <a href="#" ng-click="vm.selektujProizvod(el)">
+            <strong>{{ el.naziv | limitTo: 20 }}{{el.naziv.length > 20 ? '...' : ''}}</strong></a><br>
+          {{el.cena}} din <br>
+          <a href="#" ng-click="vm.filter(el.kategorija)"><small>{{el.kategorija}} </small></a>
+      </div>
+  </div>
+  <div style="text-align:center;" ng-if="vm.proizvod==null">
+      <ul uib-pagination direction-links="true"
+            total-items="vm.totalItems"
+            ng-model="vm.currentPage"
+            max-size="vm.maxSize"
+            class="pagination-sm"
+            boundary-links="true"
+            num-pages="vm.smallnumPages"></ul>
+  </div>
+  <div class="row" ng-if="vm.proizvod!=null">
+    <div class="col-sm-12">
+        <!--img src="{{vm.proizvod.img}}" style="width:512px; height:320px;"><br-->
+        <strong>{{ vm.proizvod.naziv | limitTo: 20 }}{{vm.proizvod.naziv.length > 20 ? '...' : ''}}</strong></a><br>
+        <img src="http://lorempixel.com/512/320/" style="width:512px; height:320px;"><br>
+
+        <a ng-click="vm.set_favorit(el)" style="cursor:hand;" uib-tooltip="Postavi u omiljene">
+          <i class="glyphicon" ng-class="{'glyphicon-star-empty':el.favorit!=true, 'glyphicon-star':el.favorit==true}"
+           aria-hidden="true"></i></a>
+
+        <a href="#" ng-click="vm.selektujProizvod(vm.proizvod)"><br>
+          Cena: {{vm.proizvod.cena}} din <br>
+          Popust: {{vm.proizvod.popust}}% <br>
+          Konacna cena:  <br>
+          Raspolozivo: {{vm.proizvod.kolicina}} komada<br>
+        <a href="#" ng-click="vm.filter(vm.proizvod.kategorija)"><small>{{vm.proizvod.kategorija}} </small></a><br>
+        <input type="text" ng-model="vm.kolicina" placeholder="Komada">
+        <button type="button" class="btn btn-primary btn-outline btn-xs"
+          ng-click="vm.kupi(vm.proizvod)">Kupi</button><br>
+        {{vm.proizvod.opis}} <br>
+        Ocena: {{vm.proizvod.ocena}}
+    </div>
+  </div>
+  KORPA:<br>
+<div ng-repeat="el in vm.korpa">
+{{el.proizvod.naziv}} {{el.proizvod.cena}} RSD {{el.kolicina}} Kom
+</div>
+</div>
+</div>
